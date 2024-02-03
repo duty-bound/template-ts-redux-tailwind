@@ -2,14 +2,14 @@ const { merge } = require('webpack-merge')
 const path = require('path')
 const parts = require('./webpack.parts')
 
-const distPath = path.resolve(__dirname, 'dist')
+const distPath = path.resolve(__dirname, '..', 'dist')
 const cssLoaders = [parts.autoprefix(), parts.tailwind()]
 
 const commonConfig = merge([
-  { entry: ['./src/index.tsx'] },
+  { entry: path.resolve(__dirname, '..', 'src', 'index.tsx') },
   {
     output: {
-      path: path.resolve(__dirname, 'dist'),
+      path: distPath,
       filename: 'index_bundle.js'
     }
   },
