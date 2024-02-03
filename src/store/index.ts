@@ -22,3 +22,7 @@ const initStore = (preloadedState = initialState): EnhancedStore => configureSto
 })
 
 export const store = initStore(initialState)
+
+export type AppDispatch = typeof store.dispatch
+
+export { useAppSelector, useAppDispatch } from './hooks'

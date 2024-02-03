@@ -1,13 +1,5 @@
 {
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "standard.vscode-standard",
+  "standard.enable": true,
   "standard.autoFixOnSave": true,
-  "standard.engine": "ts-standard",
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  },
-  "typescript.format.enable": false,
-  "[javascriptreact]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+  "standard.treatErrorsAsWarnings": true
 }
