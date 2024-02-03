@@ -2,6 +2,7 @@ const { merge } = require('webpack-merge')
 const path = require('path')
 const parts = require('./webpack.parts')
 
+const distPath = path.resolve(__dirname, 'dist')
 const cssLoaders = [parts.autoprefix(), parts.tailwind()]
 
 const commonConfig = merge([
@@ -13,10 +14,11 @@ const commonConfig = merge([
     }
   },
   parts.jsLoader(),
-  parts.extractCSS({ loaders: cssLoaders })
+  parts.extractCSS({ loaders: cssLoaders }),
+  parts.copyIndexHtml(distPath)
 ])
 
-const developmentConfig = parts.devServer()
+const developmentConfig = parts.devServer(distPath)
 
 const getConfig = (mode) => {
   switch (mode) {

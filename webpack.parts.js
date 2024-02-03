@@ -2,6 +2,7 @@ const path = require('path')
 const tailwindcss = require('tailwindcss')()
 const autoprefixer = require('autoprefixer')()
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const CopyPlugin = require('copy-webpack-plugin')
 
 // js loader
 exports.jsLoader = () => ({
@@ -66,10 +67,28 @@ exports.autoprefix = () => ({
 })
 
 // webpack-dev-server
-exports.devServer = () => ({
+exports.devServer = (distPath) => ({
   devServer: {
-    static: path.join(__dirname, 'dist'),
+    static: distPath,
     compress: true,
-    port: 4000
+    port: 4000,
+    devMiddleware: {
+      writeToDisk: false // webpack-dev-server, by default, will not create files in the dist folder, but run them from memory.
+      //  Set to `true` to instruct webpack-dev-server to create a copy of the files in the 'dist' folder
+    }
   }
+})
+
+// copy index.html to dist folder
+exports.copyIndexHtml = (distPath) => ({
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src', 'index.html'),
+          to: path.resolve(distPath, 'index.html')
+        }
+      ]
+    })
+  ]
 })
