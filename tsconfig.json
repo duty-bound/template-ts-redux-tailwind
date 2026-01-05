@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "es6",
+    "target": "es2023",
+    "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["es6", "dom"],
+    "lib": ["es2023", "dom"],
     "sourceMap": true,
     "jsx": "react",
     "strict": true,
@@ -11,6 +11,12 @@
     "noImplicitAny": false,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "backend"
+  ]
 }

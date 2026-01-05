@@ -3,7 +3,6 @@ const path = require('path')
 const parts = require('./webpack.parts')
 
 const distPath = path.resolve(__dirname, '..', 'dist')
-const cssLoaders = [parts.autoprefix(), parts.tailwind()]
 
 const commonConfig = merge([
   { entry: path.resolve(__dirname, '..', 'src', 'index.tsx') },
@@ -14,7 +13,7 @@ const commonConfig = merge([
     }
   },
   parts.jsLoader(),
-  parts.extractCSS({ loaders: cssLoaders }),
+  parts.extractCSS(),
   parts.copyIndexHtml(distPath)
 ])
 
