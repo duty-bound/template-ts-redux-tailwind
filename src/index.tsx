@@ -1,15 +1,16 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import { Provider } from 'react-redux'
-import 'tailwindcss/tailwind.css'
-import { store } from './store/index'
-import { App } from './App'
+import { store } from './store'
+import './index.css'
+import { App } from './components/App'
 
-const mountNode = document.getElementById('mountNode')
+const container = document.getElementById('mountNode')
 
-ReactDOM.render(
+const root = createRoot(container as HTMLElement)
+
+root.render(
   <Provider store={store}>
     <App />
-  </Provider>,
-  mountNode
+  </Provider>
 )

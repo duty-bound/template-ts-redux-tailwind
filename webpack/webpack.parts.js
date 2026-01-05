@@ -1,6 +1,4 @@
 const path = require('path')
-const tailwindcss = require('tailwindcss')()
-const autoprefixer = require('autoprefixer')()
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 
@@ -22,16 +20,6 @@ exports.jsLoader = () => ({
   }
 })
 
-// tailwind
-exports.tailwind = () => ({
-  loader: 'postcss-loader',
-  options: {
-    postcssOptions: {
-      plugins: [tailwindcss]
-    }
-  }
-})
-
 // extractCss
 exports.extractCSS = ({ options = {}, loaders = [] } = {}) => ({
   module: {
@@ -43,7 +31,8 @@ exports.extractCSS = ({ options = {}, loaders = [] } = {}) => ({
             loader: MiniCssExtractPlugin.loader,
             options
           },
-          'css-loader'
+          'css-loader',
+          'postcss-loader' // Tailwind + Autoprefixer live here
         ].concat(loaders),
         sideEffects: true
       }
@@ -54,16 +43,6 @@ exports.extractCSS = ({ options = {}, loaders = [] } = {}) => ({
       filename: '[name].css'
     })
   ]
-})
-
-// auto prefixing
-exports.autoprefix = () => ({
-  loader: 'postcss-loader',
-  options: {
-    postcssOptions: {
-      plugins: [autoprefixer]
-    }
-  }
 })
 
 // webpack-dev-server

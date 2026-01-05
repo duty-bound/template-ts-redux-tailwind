@@ -5,8 +5,8 @@ import type { IState } from '.'
 
 type TypedDispatch<T> = ThunkDispatch<T, any, AnyAction>
 
-export const useAppDispatch = (): any => useDispatch<TypedDispatch<IState>>()
 export const useAppSelector: TypedUseSelectorHook<IState> = useSelector
+export const useAppDispatch = (): any => useDispatch<TypedDispatch<IState>>()
 
 // the above solution is from:
 //  - https://github.com/reduxjs/redux-thunk/issues/333#issuecomment-1286695992
